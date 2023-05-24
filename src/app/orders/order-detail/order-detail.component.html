@@ -1,0 +1,29 @@
+
+<div  *ngIf="order">
+
+  <div class="shippingStatus" [ngClass]="(order.shippingStatus=='Delivered')?'completed':'loading'"><h1
+  style="color:whitesmoke">{{order.shippingStatus}}</h1>
+    <progress id="shippingProgress" [value]="currentProgress(order.shippingStatus)" max="4"></progress>
+  </div>
+  <table style="width: 100%;">
+    <tr><th></th><th>Quantity</th><th>Individual Price</th><th>Calculated Price</th></tr>
+
+    <tr *ngFor="let knife of order.knifePurchase"><td style="display: flex; flex-direction: column; align-items: center"><img style="height: 110px" *ngIf="(knife.knife.image&&knife.knife.image[0].image!='NaN') else elseBlock1" src="./assets/knifeImage/{{knife.knife.image[0].image}}" alt="image not found" >
+      <ng-template #elseBlock1><img style="height: 110px" src="./assets/notFound.png" alt="image not found" ></ng-template>
+      <p style="text-align: center;">{{knife.knife.name}}</p></td>
+      <td>{{knife.quantity}}</td>
+      <td>{{knife.knife.price}}</td>
+      <td>{{knife.knife.price*knife.quantity}}</td></tr>
+    <tr *ngFor="let accessory of order.accessoryPurchase"><td style="display: flex; flex-direction: column; align-items: center"><img style="height: 110px" *ngIf="accessory.accessory.imageUrl!='NaN' else elseBlock2"src="./assets/knifeImage/{{accessory.accessory.imageUrl}}" alt="image not found" >
+      <ng-template #elseBlock2><img style="height: 110px" src="./assets/notFound.png" alt="image not found" ></ng-template>
+      <p style="text-align: center;">{{accessory.accessory.accessoryName}}</p></td>
+      <td>{{accessory.quantity}}</td>
+      <td>{{accessory.accessory.price}}</td>
+      <td>{{accessory.accessory.price*accessory.quantity}}</td></tr>
+
+  </table>
+
+
+
+  <div class="endTotal">Total: {{order.total}}</div>
+</div>

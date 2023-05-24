@@ -1,0 +1,23 @@
+
+
+
+
+
+<h1  style="text-align: center">Shopping cart</h1>
+<div *ngFor="let knife of this.cs.knife">
+  <ul><img *ngIf="knife.knife.image else elseBlock" [src]="checkKnifeImg(knife.knife.image[0].image)">
+    <ng-template #elseBlock><img src="./assets/notFound.png"></ng-template>
+    {{knife.knife.name}}  <div><button (click)="subKnife(knife)">-</button> <input disabled
+    type="number" min="1" max="999" [(ngModel)]="knife.quantity">  <button (click)="addKnife(knife)">+</button></div> {{knife.knife.price*knife.quantity}}
+  <button (click)="deleteKnife(knife)" > <i class="fa fa-trash" aria-hidden="true"></i></button></ul>
+</div>
+<div *ngFor="let accessory of this.cs.accessory">
+  <ul> <img [src]="checkAccessoryImg(accessory.accessory.imageUrl)">{{accessory.accessory.accessoryName}}  <div><button (click)="subAccessory(accessory)">-</button> <input disabled
+    type="number" min="1" max="999" [(ngModel)]="accessory.quantity"> <button (click)="addAccessory(accessory)">+</button></div> {{accessory.accessory.price*accessory.quantity}}
+  <button (click)="deleteAccessory(accessory)"><i class="fa fa-trash" aria-hidden="true"></i></button></ul>
+</div>
+
+
+<div >Total : {{total}}</div>
+<button [disabled]="!(cs.accessory.length||cs.knife.length)" (click)="toCheckout()">Place Order</button>
+<button (click)="clear()">Clear Cart</button>

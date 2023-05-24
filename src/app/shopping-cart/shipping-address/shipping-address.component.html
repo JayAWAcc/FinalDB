@@ -1,0 +1,73 @@
+
+<form class="address">
+  <div>
+    <label>Email</label>
+    <input #email type="email" [(ngModel)]="address.email" required name="email" >
+    <br>
+    <mat-error *ngIf="!validateEmail(email.value)&&email.value!=''">Please enter a valid email</mat-error>
+  </div>
+
+  <div>
+    <label>Address1</label>
+    <input  [(ngModel)]="address.address1" name="address1">
+  </div>
+  <div>
+    <label>Address2</label>
+    <input  [(ngModel)]="address.address2" name="address2">
+  </div>
+  <div>
+    <label>City</label>
+    <input  maxlength="50" [(ngModel)]="address.city" name="city">
+  </div>
+  <div>
+    <label>State</label>
+<!--    <input  [(ngModel)]="address.state" name="state">-->
+    <select [(ngModel)]="address.state" placeholder="state" name="state">
+      <option *ngFor="let option of states" value="{{option}}">
+        {{option}}
+      </option>
+    </select>
+
+  </div>
+  <div>
+    <label>Zip Code</label>
+    <input #zip type="text" maxlength="10" [(ngModel)]="address.zip" required name="zip">
+    <br>
+    <mat-error *ngIf="!zip.value.match(zipPattern)&&zip.value!=''">Entered zip code must be in the format of 12345 or 12345-1234</mat-error>
+
+  </div>
+  <mat-error *ngIf="statement">{{statement}}</mat-error>
+  <button (click)="submitOrder()">Submit</button>
+
+
+</form>
+
+
+
+<form [formGroup]="cardNumberGroup">
+  <div>
+    <label>Credit/Debit card</label>
+    <input formControlName="cardNumber">
+    <mat-error *ngIf="cardNumberGroup.controls['cardNumber'].invalid&&cardNumberGroup.controls['cardNumber'].value!=''">Card number is not valid</mat-error>
+  </div>
+
+  <div style="display:flex; flex-direction: row; align-items: end">
+    <div style="display:flex; flex-direction: column; align-items: center">
+      <label>Month</label>
+      <input formControlName="month" name="month" maxlength="2" placeholder="00" style="width: 20px">
+    </div>/
+    <div style="display:flex; flex-direction: column; align-items: center">
+      <label>Year</label>
+      <input name="year" maxlength="2" placeholder="22" style="width: 20px">
+    </div>
+
+  </div>
+  <div>
+    <label>CVV</label>
+    <input maxlength="4" style="width: 50px">
+  </div>
+
+</form>
+
+
+

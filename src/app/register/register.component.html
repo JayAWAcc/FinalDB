@@ -1,0 +1,44 @@
+<h1 class="box">Register</h1>
+
+  <mat-card  fxLayoyt="column" fxLayoutAlign="center" >
+    <form class="box" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input id="username" minlength="3" maxlength="20" type="text" matInput placeholder="minimum 3 character" formControlName="username">
+        <mat-error>Please enter a valid username</mat-error>
+        <mat-error *ngIf="!availableUsername">Username already exit please enter a new username</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <mat-placeholder></mat-placeholder>
+        <input type="email" matInput formControlName="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" c>
+        <mat-error>Please enter a valid Email</mat-error>
+      </mat-form-field>
+      <div formGroupName="passwordGroup" class="box">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <mat-placeholder></mat-placeholder>
+          <input type="password" matInput formControlName="password">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <mat-placeholder></mat-placeholder>
+          <input type="password" matInput formControlName="confirmPassword">
+        </mat-form-field>
+        <mat-error>{{registerForm.get('passwordGroup')?.getError('passwordNotMatch')}}</mat-error>
+      </div>
+
+
+        <button>Submit</button>
+
+
+
+    </form>
+
+
+  </mat-card>
+
+
+
+
+

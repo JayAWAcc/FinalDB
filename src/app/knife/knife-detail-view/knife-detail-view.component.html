@@ -1,0 +1,83 @@
+
+<div *ngIf="knife" class="container">
+
+  <div><div class="bigView" >
+
+    <img style="height: 90%;" *ngIf="!(currentImg==='NaN'||currentImg=='') else elseBlock" [src]="imgUrl"  alt="image not found">
+  <ng-template #elseBlock><img  src="./assets/notFound.png" alt="image not found"></ng-template></div>
+
+    <br><br>
+
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap;   border-style: ridge;">
+
+    <div class="sliderView" *ngIf="!(this.knife.image&&this.knife.image.length)">
+    <img   style="height: 100%" src="./assets/notFound.png" alt="image not found"  >
+
+  </div>
+
+    <div class="sliderView" *ngFor="let img of this.knife.image">
+      <img style="height: 100%" *ngIf="img.image!='NaN'&&img.image!='' else elseBlock3" [src]="checkImg(img.image)" alt="image not found" (mouseover)="changeSrc(img.image)">
+      <ng-template #elseBlock3 ><img style="height: 100%" src="./assets/notFound.png" alt="image not found" (mouseover)="changeSrc(img.image)" ></ng-template>
+
+    </div>
+
+
+  </div>
+    <h1 class="sideNote">{{knife.name}}</h1>
+    <h1 class="sideNote" style="font-size: 15px; color: orange;"> {{knife.knifeType[0].toUpperCase()+knife.knifeType.substring(1)}}</h1>
+    <h1 class="sideNote">{{knife.price|currency}}</h1>
+
+
+
+  <div class="container" style="margin-left: 0px; align-items: center">
+
+    <h1 class="sideNote">Brand: {{knife.brand[0].toUpperCase()+knife.brand.substring(1)}}</h1>
+    <h1 class="sideNote">Supplier: {{knife.supplier[0].toUpperCase()+knife.supplier.substring(1)}}</h1>
+    <h1 class="sideNote">Forging Steel: {{knife.steel}}</h1></div>
+    <div *ngIf="!isNaN(averageRating) else elseBlock1">Rating:{{averageRating}}
+    <app-star [rating]=averageRating></app-star></div>
+  <ng-template #elseBlock1><p>No Review Yet</p></ng-template>
+  </div>
+
+  <div style="display: flex; flex-direction: row; justify-content: right; margin-right: 30px">
+    <div [style.color]="knife.stock>0?'green':'red'" >{{isInStock(knife.stock)}}
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: row; justify-content: right; flex-wrap: wrap;    ">
+
+       <button (click)="subOne()">-</button><input type="number" min="1" disabled="true" [max]="knife.stock" maxlength="3" [ngModel]=quantity (ngModelChange)="onChange($event)" ><button (click)="addOne()">+</button>
+    <button (click)="addProduct()">Add to Cart</button>
+
+  </div>
+
+  <div *ngIf="knife&&quantity>=knife.stock"> MAX INVENTORY REACHED</div>
+
+  <div style="display: flex; flex-direction: row; align-items: baseline">
+    <h1 style="font-size: 15px">Description: </h1>
+    <p style="word-wrap: break-word">{{knife.description}}</p>
+  </div>
+
+  <button *ngIf="!comment" class="reviewButton" (click)="changeFlag()">Write A Review</button>
+  <br>
+  <mat-error *ngIf="commentError">{{commentError}}</mat-error>
+
+  <div *ngIf="comment">
+
+    <input type="range" min="0" max="5" step="0.5" [(ngModel)]="comment.rating"><div>{{comment.rating}} /5</div>
+    <p> <app-star [rating]="comment.rating"></app-star> </p>
+    <br>
+    <input class="commentText"  type="text" [(ngModel)]="comment.comments">
+    <br>
+    <button #reviewButton (click)="submitComment()">Submit Comment</button>
+  </div>
+
+  <div>
+    <app-knife-comment *ngFor="let comment of comments" [comment]="comment"></app-knife-comment>
+  </div>
+
+
+</div>
+
+
+

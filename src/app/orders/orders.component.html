@@ -1,0 +1,8 @@
+
+<div class="orderContainer" *ngIf="order">
+  <div #orderedDate>Ordered On: {{order.orderDate}}</div>
+  <div #knifeNum>Knives :{{order.knifePurchase.length}}</div>
+  <div #accessoryNum>Accessory :{{order.accessoryPurchase.length}}</div>
+  <div #price>Total :{{order.total}}</div>
+
+</div>

@@ -1,0 +1,13 @@
+<div style="  height: 170px; width: 140px;">
+  <a *ngIf="accessory" [routerLink]="['/accessory/',accessory.id]" style="display: flex; flex-direction: column; align-items: center">
+
+
+    <img *ngIf="!(accessory.imageUrl=='NaN'||accessory.imageUrl=='') else elseBlock" src="{{accessoryImage}}" alt="image not found">
+    <ng-template #elseBlock><img style="height: 110px" src="./assets/notFound.png" alt="image not found"></ng-template>
+    <p>{{accessory.accessoryName}}</p>
+    <p>{{accessory.price|currency}}</p>
+    <div [style.color]="accessory.stock>0?'green':'red'">{{isInStock(accessory.stock)}}</div>
+
+
+  </a>
+</div>

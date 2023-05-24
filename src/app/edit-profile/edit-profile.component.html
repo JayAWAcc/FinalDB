@@ -1,0 +1,41 @@
+<form class="box"  (ngSubmit)="onSubmit()">
+  <div>
+    <label>Address1</label>
+    <input [(ngModel)]="address.address1" name="address1">
+  </div>
+  <div>
+    <label>Address2</label>
+    <input  [(ngModel)]="address.address2" name="address2" >
+  </div>
+
+  <div>
+    <label>
+      E-mail
+    </label>
+    <input  [(ngModel)]="address.email" name="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+  </div>
+  <div>
+    <label>Phone</label>
+    <input   [(ngModel)]="address.phone"  name="phone" >
+  </div>
+  <div>
+    <label>
+      City
+    </label>
+    <input [(ngModel)]="address.city" name="city">
+  </div>
+    <div>
+      <label>State</label>
+      <select [(ngModel)]="address.state" name="state">
+        <option *ngFor="let option of states" value="{{option}}">
+          {{option}}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label>zip</label>
+      <input  maxlength="10" name="zip" [(ngModel)]="address.zip" [pattern]="zipPattern">
+    </div>
+  <mat-error *ngIf="error">{{error}}</mat-error>
+  <button>Submit</button>
+</form>

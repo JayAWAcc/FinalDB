@@ -1,0 +1,41 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.container{
+  margin-left: 78px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.bigView{
+  height: 250px;
+}
+
+.sliderView
+{
+  height: 100px;
+
+}
+
+img{
+  background-color: aliceblue;
+}
+
+
+.sideNote{
+  font-family: Abel;
+  width: 170px;
+}
+
+.commentText{
+  height: 100px;
+  width: 90%;
+
+}
+.reviewButton{
+  width: 120px;
+}

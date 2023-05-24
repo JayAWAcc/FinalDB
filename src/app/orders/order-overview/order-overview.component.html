@@ -1,0 +1,8 @@
+
+  <ol>
+
+    <li class="order" *ngFor="let order of orders" ><a routerLink="/orders/{{order.id}}" routerLinkActive="true">
+      <app-orders [order]="order"></app-orders></a></li>
+  </ol>
+
+

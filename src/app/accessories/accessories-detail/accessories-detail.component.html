@@ -1,0 +1,40 @@
+<mat-card-header>Accessory Detail</mat-card-header>
+<div *ngIf="accessory" class="container">
+
+
+
+  <img *ngIf="!(accessory.imageUrl=='NaN'||accessory.imageUrl=='') else elseBlock" src="{{accessory.imageUrl}}" alt="image not found">
+  <ng-template #elseBlock><img src="./assets/notFound.png" alt="image not found"></ng-template>
+  <h1 class="sideNote">{{accessory.accessoryName[0].toUpperCase()+accessory.accessoryName.substring(1)}}</h1>
+  <div>{{accessory.price|currency}}</div>
+  <div>
+    <p class="sideNote" style="word-wrap: break-word; font-size: 16px;">Description: {{accessory.description}}</p>
+
+  </div>
+
+  <div *ngIf="!isNaN(averageRating) else elseBlock1">Rating: {{averageRating}}
+    <app-star *ngIf="!comment" [rating]=averageRating></app-star>
+  </div>
+  <ng-template #elseBlock1><p>No Review Yet</p></ng-template>
+
+  <div [style.color]="accessory.stock>0?'green':'red'">{{isInStock(accessory.stock)}}</div>
+  <div><button (click)="addProduct()">Add to Cart</button>
+  <button (click)="subOne()">-</button><input type="number" disabled="true" pattern="/^-?[0-9][^\.]*$/" min="1" max="999" [(ngModel)]="quantity"><button (click)="addOne()">+</button></div>
+  <div *ngIf="accessory&&quantity===accessory.stock"> MAX INVENTORY REACHED</div>
+  <button *ngIf="!comment" class="reviewButton" (click)="changeFlag()">Write A Review</button>
+  <br>
+  <mat-error *ngIf="commentError">{{commentError}}</mat-error>
+
+
+  <div *ngIf="comment">
+    <input type="range" min="0" max="5" step="0.5" [(ngModel)]="comment.rating">
+    <app-star [rating]="comment.rating"></app-star>
+    <br>
+    <input type="text" [(ngModel)]="comment.comments">
+    <br>
+    <button #reviewButton (click)="submitComment()" [disabled]="reviewDisabled">Submit Comment</button>
+  </div>
+  <app-accessory-comment *ngFor="let comment of comments" [comment]="comment"></app-accessory-comment>
+
+
+</div>

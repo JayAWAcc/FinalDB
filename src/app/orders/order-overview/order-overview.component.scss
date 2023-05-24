@@ -1,0 +1,25 @@
+
+
+a{
+  text-decoration-line: none;
+  text-decoration: none;
+  color: indigo;
+}
+li{
+  margin-top:5px;
+}
+li:nth-child(odd)
+{
+  background-color: #ff8f38;
+}
+li:nth-child(even)
+{
+  background-color: gray;
+}
+li div{
+  margin-left:4px;
+}
+ol{
+  margin: auto;
+  display: block;width: 50%;
+}

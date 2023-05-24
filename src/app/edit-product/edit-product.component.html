@@ -1,0 +1,32 @@
+<div style="overflow-x: auto">
+  <th><button (click)="changeMenu()">Knife</button></th><th><button (click)="changeMenu()">Accessory</button></th>
+  <table *ngIf="knifeMenu else accessoryTable" style="width: 100%">
+
+    <tr *ngFor="let knife of knives|knifePipe:undefined:undefined:ps.pageSize:ps.currentPage" >
+      <td><img [src]="checkImage(knife)"></td><td><input [(ngModel)]="knife.name"></td><td><input [(ngModel)]="knife.price"></td><td><input [(ngModel)]="knife.knifeType"></td>
+      <td><input [(ngModel)]="knife.brand"></td><td><input [(ngModel)]="knife.description"> </td><td><input [(ngModel)]="knife.knifeType"></td>
+      <td><input [(ngModel)]="knife.supplier"></td><td><input [(ngModel)]="knife.stock"></td><td><button (click)="changeKnife(knife)">Submit</button></td>
+    </tr>
+  </table>
+
+  <ng-template #accessoryTable>
+    <table style="width: 100%">
+      <tr *ngFor="let accessory of accessories">
+        <td><img [src]="checkAccessoryImg(accessory.imageUrl)"></td><td><input [(ngModel)]="accessory.accessoryName"></td><td><input [(ngModel)]="accessory.price"></td>
+        <td><input [(ngModel)]="accessory.description"></td>
+        <td><input [(ngModel)]="accessory.supplier"></td><td><input [(ngModel)]="accessory.stock"></td><td><button (click)="changeAccessory(accessory)">Submit</button></td>
+      </tr>
+    </table>
+  </ng-template>
+
+</div>
+
+
+<mat-paginator
+  [length]="ps.length"
+  [pageSize]="ps.pageSize"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="ps.changePage($event)"
+  aria-label="Select page"
+></mat-paginator>
+

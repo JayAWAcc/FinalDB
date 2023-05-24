@@ -1,0 +1,26 @@
+<div style="  display: flex;
+  flex-direction: row;
+  align-items: center;
+ display: flex;
+  flex-direction: column;
+  align-items: center;">
+  <form id="loginForm" >
+    <h1>Login</h1>
+    <input [(ngModel)]="username" placeholder="username" name="username">
+    <br>
+    <input [(ngModel)]="password" placeholder="password" name="password">
+    <br>
+    <mat-error *ngIf="error">{{error}}</mat-error>
+    <div><button (click)="login()">Submit</button>
+      <a routerLink="/register" routerLinkActive="true">
+        <button>Register</button>
+      </a></div>
+
+  </form>
+
+</div>
+
+<button (click)="checkLogin()">check login</button>
+
+
+
