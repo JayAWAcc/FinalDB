@@ -1,0 +1,91 @@
+
+
+<form (ngSubmit)="saveKnife()" class="form">
+  <h1>Add Product</h1>
+  <div id="image" class="image">
+    <label>Image :</label>
+    <input [(ngModel)]="imageUrl" name="image">
+  </div><button type="button" style="margin-left: 90%" (click)="addImageInput()">+</button>
+  <div>
+    <label>Name :</label>
+    <input [(ngModel)]="knife.name" type="text" name="name">
+  </div>
+  <div>
+    <label>Price :</label>
+    <input [(ngModel)]="knife.price" type="number" min="0" name="price">
+  </div>
+  <div>
+    <label>Description :</label>
+    <input style="    height: 100px;
+    width: 90%;" [(ngModel)]="knife.description" type="text" name="description">
+  </div>
+  <div>
+    <label>Supplier :</label>
+    <input [(ngModel)]="knife.supplier" name="supplier">
+  </div>
+  <div>
+    <label>Brand :</label>
+    <input [(ngModel)]="knife.brand" name="brand">
+  </div>
+
+  <div>
+    <label>Knife Type :</label>
+    <input [(ngModel)]="knife.knifeType" name="type">
+  </div>
+  <div>
+    <label>Steel :</label>
+    <input [(ngModel)]="knife.steel" name="steel">
+  </div>
+  <div>
+    <label>Stock :</label>
+    <input [(ngModel)]="knife.stock" pattern="/^-?[0-9][^\.]*$/" type="number" name="stock">
+  </div>
+  <mat-error *ngIf="knifeNotValid">NOT VALID INPUT PLEASE CHECK THAT ALL BOXES HAVE VALID INPUT</mat-error>
+
+  <mat-error *ngIf="knifeValid">KNIFE SENT</mat-error>
+
+  <button style="margin-left: 90%">Submit</button>
+</form>
+
+
+
+
+
+<form (ngSubmit)="saveAccessory()" class="form">
+  <h1>Accessory</h1>
+  <div #image>
+    <label>Accessory Name :</label>
+    <input [(ngModel)]="accessory.accessoryName" name="name">
+  </div>
+  <div>
+    <label>Price :</label>
+    <input [(ngModel)]="accessory.price" type="number" name="price">
+  </div>
+  <div>
+    <label>Description :</label>
+    <input [(ngModel)]="accessory.description" type="text" name="description">
+  </div>
+  <div>
+    <label>Image  :</label>
+    <input [(ngModel)]="accessory.imageUrl" type="text" name="imageUrl">
+  </div>
+  <div id="type">
+    <label>Accessory Type :</label>
+    <input [(ngModel)]="accessoryType" name="type">
+  </div>
+  <button type="button" style="margin-left: 90%" (click)="addTypeInput()">+</button>
+  <div>
+    <label>Stock :</label>
+    <input type="number" [(ngModel)]="accessory.stock" name="stock">
+  </div>
+  <div>
+    <label>Supplier :</label>
+    <input [(ngModel)]="accessory.supplier" name="supplier">
+  </div>
+
+  <mat-error *ngIf="accessoryNotValid">NOT VALID INPUT PLEASE CHECK THAT ALL BOXES HAVE VALID INPUT</mat-error>
+  <mat-error *ngIf="accessoryValid">ACCESSORY SENT</mat-error>
+
+  <button style="margin-left: 90%">Submit</button>
+
+</form>

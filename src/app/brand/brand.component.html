@@ -1,0 +1,10 @@
+<mat-card-header *ngIf="value" style="font-size: 25px">{{value[0].toUpperCase()+value.substring(1)}}</mat-card-header>
+<app-knife [category]="category" [value]="value"></app-knife>
+
+<mat-paginator
+  [length]="ps.length"
+  [pageSize]="ps.pageSize"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="ps.changePage($event)"
+  aria-label="Select page"
+></mat-paginator>

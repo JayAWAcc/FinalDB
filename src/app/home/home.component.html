@@ -1,0 +1,28 @@
+<mat-card-header>Home</mat-card-header>
+  <div class="searchBar">
+    <mat-icon>search</mat-icon><input [(ngModel)]="searchedValue">
+
+  </div>
+  <div style="display: flex; flex-direction: row; justify-content: center">
+    <label>Show Out of Stock Items</label>
+    <input type="checkbox" (click)="showOutofStock=!showOutofStock">
+    Price:<div clas="upDown"><input type="number" max="1" min="-1" step="2"  class="upDownButton" [(ngModel)]="priceOrdering"></div>
+  </div>
+
+  <div class="knifeContainer" *ngIf="searchedValue else elseBlock" >
+    <app-knife-view *ngFor="let knife of knives|searchKnifePipe:searchedValue:showOutofStock|knifeSorting:priceOrdering
+" [knife]="knife"></app-knife-view>
+    <app-accessories-view *ngFor="let accessory of accessories|searchAccessoryPipe:searchedValue:showOutofStock" [accessory]="accessory"></app-accessories-view>
+  </div>
+<ng-template #elseBlock><app-knife [size]="ps.pageSize" [price]="priceOrdering" ></app-knife></ng-template>
+
+
+
+
+<mat-paginator
+  [length]="ps.length"
+  [pageSize]="ps.pageSize"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="ps.changePage($event)"
+  aria-label="Select page"
+></mat-paginator>

@@ -1,0 +1,12 @@
+
+<div class="knifeContainer">
+  <a *ngIf="knife" [routerLink]="['/knife-detail',knife.id]" style="display: flex; flex-direction: column; align-items: center">
+    <img *ngIf="!(imgUrl==='NaN'||imgUrl==='') else elseBlock" style="height: 115px; width: auto" src="{{imgUrl}}" alt="image not found" >
+    <ng-template #elseBlock><img style="height: 110px" style="height: 115px; width: auto" src="./assets/knifeImage/notFound.png" alt="image not found" ></ng-template><!--onerror="this.onerror=null;this.src=''"-->
+    <div>{{knife.name}}</div>
+    <div>
+      {{knife.price|currency}}
+    </div>
+    <div [style.color]="knife.stock>0?'green':'red'" >{{isInStock(knife.stock)}}</div>
+  </a>
+</div>

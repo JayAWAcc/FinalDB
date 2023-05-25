@@ -1,0 +1,14 @@
+<h1 *ngIf="value" style="text-align: center">{{value[0].toUpperCase()+value.substring(1)}}</h1>
+<div class="container">
+  <app-accessories-view *ngFor="let accessory of accessories|accessoryPipe:category:value:ps.pageSize:ps.currentPage" [accessory]="accessory"></app-accessories-view>
+
+
+</div>
+
+<mat-paginator
+  [length]="ps.length"
+  [pageSize]="ps.pageSize"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="ps.changePage($event)"
+  aria-label="Select page"
+></mat-paginator>

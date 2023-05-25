@@ -1,0 +1,67 @@
+<div class="header" >
+  <button mat mat-stroked-button class="headerButton" ><a  mat-menu-item routerLink="/home" routerLinkActive="active" class="nav-link">Home</a>
+  </button>
+  <h1 style="margin: 0px 15px 5px 15px;">Shop By</h1>
+  <mat-menu #appBrand>
+  <ng-template matMenuContent>
+    <a mat-menu-item routerLink="/brand/sakura" routerLinkActive="active" class="nav-link">Sakura</a>
+    <a mat-menu-item routerLink="/brand/takoyaki" routerLinkActive="active" class="nav-link">Takoyaki</a>
+  </ng-template>
+</mat-menu>
+  <button class="headerButton" mat-stroked-button [matMenuTriggerFor]="appBrand">Brand
+  </button>
+  <mat-menu #appKnifeType="matMenu">
+  <ng-template matMenuContent>
+    <a mat-menu-item routerLink="/knifeType/petty"  routerLinkActive="active" class="nav-link">Petty</a>
+  </ng-template>
+</mat-menu>
+
+  <button class="headerButton" mat-stroked-button [matMenuTriggerFor]="appKnifeType">KnifeType
+  </button>
+  <mat-menu #appSteel="matMenu">
+    <ng-template matMenuContent>
+      <a mat-menu-item routerLink="/steel/m235" routerLinkActive="active" class="nav-link">M235</a>
+    </ng-template>
+  </mat-menu>
+
+  <button class="headerButton" mat-stroked-button [matMenuTriggerFor]="appSteel">Steel
+  </button>
+  <mat-menu #appSupplier="matMenu">
+    <ng-template matMenuContent>
+      <a mat-menu-item routerLink="/supplier/tiko" routerLinkActive="active" class="nav-link">Tiko</a>
+    </ng-template>
+  </mat-menu>
+
+  <button class="headerButton" mat-stroked-button [matMenuTriggerFor]="appSupplier">Supplier
+  </button>
+  <mat-menu #appAccessory="matMenu">
+    <ng-template matMenuContent>
+      <a mat-menu-item routerLink="/accessory" routerLinkActive="active" class="nav-link" [queryParams]="{value:'towels',category:'type'}">Towels</a>
+      <a mat-menu-item routerLink="/accessory" routerLinkActive="active" class="nav-link" [queryParams]="{value:'peelers',category:'type'}">Peelers</a>
+    </ng-template>
+  </mat-menu>
+
+  <button class="headerButton"  mat-stroked-button [matMenuTriggerFor]="appAccessory">Accessory
+  </button>
+
+  <mat-menu #account="matMenu">
+    <ng-template matMenuContent>
+      <a *ngIf="this.as.isAdmin" mat-menu-item routerLink="/add-product" routerLinkActive="active" class="nav-link" >Add Product</a>
+      <a *ngIf="this.as.isAdmin" mat-menu-item routerLink="/edit-product" routerLinkActive="active" class="nav-link" >Edit Product</a>
+      <a *ngIf="this.as.getCurrentLogin()" mat-menu-item routerLink="/orders/userId" routerLinkActive="active" class="nav-link" >Orders</a>
+      <a *ngIf="this.as.getCurrentLogin()" mat-menu-item routerLink="/edit-profile">Edit Information</a>
+      <a *ngIf="!this.currentUser()" mat-menu-item routerLink="/login" routerLinkActive="active">Login</a>
+      <a *ngIf="this.currentUser()" mat-menu-item (click)="logout()" routerLinkActive="active">Logout</a>
+
+    </ng-template>
+  </mat-menu>
+  <button class="headerButton" style="margin-left: auto; margin-right: 10px;" [matMenuTriggerFor]="account"><mat-icon>account_circle</mat-icon>
+  </button>
+  <button class="headerButton"  style="margin-right: 8px;" (click)="toShoppingCart()"><mat-icon>shopping_cart</mat-icon>
+  </button>
+
+</div>
+
+
+
+

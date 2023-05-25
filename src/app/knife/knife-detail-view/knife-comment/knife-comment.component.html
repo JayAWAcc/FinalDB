@@ -1,0 +1,9 @@
+<div *ngIf="comment">
+  <p>User: {{username}}</p>
+  <div>
+    <span *ngFor="let i of spanSet(comment.rating)" class="fa fa-star" style="color:orange"></span>
+    <p>Rated: {{comment.rating}}</p>
+  </div>
+
+  <p>{{comment.comments}}</p>
+</div>

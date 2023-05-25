@@ -1,0 +1,5 @@
+<div class="view">
+  <app-knife-view *ngFor="let knife of knives|knifePipe:category:value:ps.pageSize:ps.currentPage|knifeSorting:price" [knife]="knife"></app-knife-view>
+</div>
+
+

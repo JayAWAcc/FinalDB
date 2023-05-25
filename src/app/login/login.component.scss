@@ -1,0 +1,20 @@
+#loginForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: ridge;
+  border: 6px #ffa363 solid;
+  outline: 2px #806000 solid;
+  outline-offset: -2px;
+}
+
+button{
+  background-color: #d9b189;
+  color: white;
+  filter: drop-shadow(1px 1px 4px #ff9100);
+
+}
+button:hover{
+
+}
+/*animation for hover button*/
